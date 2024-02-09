@@ -1,0 +1,16 @@
+
+{
+    "compilerOptions": { 
+        "target": "esnext",
+        "module": "ES2015",
+        "jsx": "react",
+        "inlineSourceMap": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "typeRoots": [
+            "../../../puerts.core/Typing",
+            "../Gen/Typing"
+        ],
+    }
+}

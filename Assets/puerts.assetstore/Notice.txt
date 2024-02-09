@@ -1,0 +1,22 @@
+PUER Typescript uses the following open source projects:
+
+Node.js 
+Typescript (Apache)
+glob (ISC)
+
+All LICENSE files are listed below:
+
+glob:
+------
+https://github.com/isaacs/node-glob/blob/main/LICENSE
+------
+
+Typescript:
+------
+https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt
+------
+
+Node.js
+------
+https://github.com/nodejs/node/blob/main/LICENSE
+------
