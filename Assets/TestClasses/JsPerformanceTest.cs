@@ -14,15 +14,11 @@ public class JsPerformanceTest : MonoBehaviour
         using var puerTests = new PuertsTests("puer_tests.mjs", iterations);
         puerTests.Initialize();
 
-        var tests = new List<IScriptTest> { puerTests };
-        
-        using var banzaiJsTests =
-            new BanzaiJsTests(
-                Application.platform == RuntimePlatform.IPhonePlayer ? EngineTag.JavaScriptCore : EngineTag.V8,
-                iterations);
+        var engine = Application.platform == RuntimePlatform.IPhonePlayer ? EngineTag.JavaScriptCore : EngineTag.V8;
+        using var banzaiJsTests = new BanzaiJsTests(engine, iterations);
         banzaiJsTests.Initialize();
-        tests.Add(banzaiJsTests);
-
+        
+        var tests = new List<IScriptTest> { puerTests, banzaiJsTests };
 
         yield return new WaitForSeconds(1);
         Debug.Log("Starting tests...");
