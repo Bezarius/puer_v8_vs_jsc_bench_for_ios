@@ -96,3 +96,48 @@ public class PuertsTests : IScriptTest, IDisposable
         _jsEnv?.Dispose();
     }
 }
+
+[Configure]
+public class PuertsTypesBindingConfig
+{
+    [Binding]
+    static IEnumerable<Type> Bindings =>
+        new List<Type>
+        {
+            typeof(List<int>),
+            typeof(Type),
+            typeof(PlayerProgress),
+            typeof(HeroState),
+            typeof(Dictionary<int, HeroState>),
+            typeof(Dictionary<int, int>),
+            typeof(Dictionary<int, long>),
+        };
+
+    [Filter]
+    static bool FilterMethods(System.Reflection.MemberInfo mb)
+    {
+        if (mb.DeclaringType == typeof(MonoBehaviour) && mb.Name == "runInEditMode")
+        {
+            return true;
+        }
+
+        if (mb.DeclaringType == typeof(Type) && (mb.Name == "MakeGenericSignatureType" || mb.Name == "IsCollectible"))
+        {
+            return true;
+        }
+
+        if (mb.DeclaringType == typeof(System.IO.File))
+        {
+            if (mb.Name == "SetAccessControl" || mb.Name == "GetAccessControl")
+            {
+                return true;
+            }
+            else if (mb.Name == "Create")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
